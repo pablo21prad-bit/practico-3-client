@@ -1,0 +1,18 @@
+Hola profe, esta es la parte del front de la tercera entrega. Lo hice con HTML, JavaScript y Tailwind.
+
+En index.html está el login para iniciar sesión con los usuarios que están guardados en el back.
+
+En home.html se muestran todos los productos y se pueden filtrar por categoría. Desde ahí también se pueden agregar al carrito.
+
+En carrito.html se ven los productos agregados y el total. También se pueden quitar productos y hacer la compra, que se manda al back para guardar la orden.
+
+En la carpeta api están las peticiones al servidor y los archivos controller.js manejan lo que hace cada página.
+
+El carrito se guarda en localStorage para que los productos no se pierdan al recargar la página.
+
+Elegí multirepo, por eso el front y el back están en repositorios separados.
+
+Para probarlo hay que levantar el back en el puerto 3001 y abrir index.html con Live Server.
+
+Usuario de prueba: Ana
+Contraseña: clave01
