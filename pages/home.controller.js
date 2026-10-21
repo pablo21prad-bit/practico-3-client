@@ -12,36 +12,42 @@ const cargarProductos = async () => {
         const res = await getProductos(categoria.value);
         const productos = await res.json();
 
+        
         for (const producto of productos) {
-            const tarjeta = document.createElement("article");
+            contenedor.innerHTML += `
+                <article class="bg-white rounded-xl shadow p-6">
 
-            tarjeta.className = "bg-white rounded-xl shadow p-6";
+                    <img src="${producto.imagen}"
+                        alt="${producto.nombre}"
+                        class="w-full h-48 object-cover rounded-lg mb-4">
 
-            tarjeta.innerHTML = `
-                <h3 class="text-xl font-bold">
-                    ${producto.nombre}
-                </h3>
+                    <h3 class="text-xl font-bold">${producto.nombre}</h3>
 
-                <p class="text-gray-600 my-3">
-                    ${producto.desc}
-                </p>
+                    <p class="text-gray-600 my-3">${producto.desc}</p>
 
-                <p class="text-2xl font-bold text-amber-800 mb-4">
-                    $${producto.precio}
-                </p>
+                    <p class="text-2xl font-bold text-amber-800 mb-4">
+                        $${producto.precio}
+                    </p>
 
-                <button type="button"
-                    class="w-full bg-amber-700 text-white p-3 rounded hover:bg-amber-800">
-                    Agregar al carrito
-                </button>
+                    <button id="agregar-${producto.id_producto}"
+                        type="button"
+                        class="w-full bg-amber-700 text-white p-3 rounded disabled:opacity-50">
+                        Agregar al carrito
+                    </button>
+
+                </article>
             `;
+        }
 
-            const boton = tarjeta.querySelector("button");
+        
+        for (const producto of productos) {
+            const boton = document.getElementById(
+                "agregar-" + producto.id_producto
+            );
 
             if (producto.disponible === false) {
                 boton.disabled = true;
                 boton.textContent = "No disponible";
-                boton.classList.add("opacity-50");
             }
 
             boton.addEventListener("click", () => {
@@ -49,21 +55,14 @@ const cargarProductos = async () => {
                     localStorage.setItem("carrito", JSON.stringify([]));
                 }
 
-                const carrito = JSON.parse(
-                    localStorage.getItem("carrito")
-                );
+                const carrito = JSON.parse(localStorage.getItem("carrito"));
 
                 carrito.push(producto);
 
-                localStorage.setItem(
-                    "carrito",
-                    JSON.stringify(carrito)
-                );
+                localStorage.setItem("carrito", JSON.stringify(carrito));
 
                 alert("Producto agregado al carrito");
             });
-
-            contenedor.appendChild(tarjeta);
         }
     } catch (error) {
         console.log(error);
