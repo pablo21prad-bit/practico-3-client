@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-amber-50 min-h-screen">
+
+    <header class="bg-amber-700 text-white p-4">
+        <nav class="max-w-6xl mx-auto flex justify-between items-center gap-4">
+            <h1 class="text-xl font-bold">Tienda de panificados</h1>
+
+            <a href="./carrito.html"
+                class="bg-white text-amber-800 px-4 py-2 rounded">
+                Ver carrito
+            </a>
+        </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-6">
+
+        <h2 class="text-2xl font-bold text-amber-900">Nuestros productos</h2>
+
+        <div class="my-6">
+            <label for="categoria" class="block mb-2">Filtrar por categoría</label>
+
+            <select id="categoria" class="bg-white border rounded p-3">
+                <option value="todos">Todos los productos</option>
+                <option value="discos">Discos y tapas</option>
+                <option value="panificados">Panificados</option>
+            </select>
+        </div>
+
+        <p id="mensaje" class="text-red-600 mb-4"></p>
+
+        <section id="productos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <article class="bg-white rounded-xl shadow p-6">
+                <h3 class="text-xl font-bold">Discos de empanadas N.º 12</h3>
+
+                <p class="text-gray-600 my-3">
+                    Paquete de 12 discos de empanadas tamaño 12.
+                </p>
+
+                <p class="text-2xl font-bold text-amber-800 mb-4">$850</p>
+
+                <button type="button"
+                    class="w-full bg-amber-700 text-white p-3 rounded hover:bg-amber-800">
+                    Agregar al carrito
+                </button>
+            </article>
+
+        </section>
+
+    </main>
+    <script type="module" src="./home.controller.js"></script>
+
+</body>
+</html>

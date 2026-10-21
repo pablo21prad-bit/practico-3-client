@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+ 
+<body class="bg-amber-50 min-h-screen flex items-center justify-center p-4">
+
+    <main class="bg-white w-full max-w-sm p-8 rounded-xl shadow">
+
+        <h1 class="text-2xl font-bold text-amber-800 text-center">
+            Tienda de panificados
+        </h1>
+
+        <h2 class="text-lg text-center mt-2 mb-6">
+            Iniciar sesión
+        </h2>
+
+        <form id="loginForm" class="space-y-4">
+            <div>
+                <label for="user" class="block mb-1">Usuario</label>
+                <input type="text" id="user" required
+                    class="w-full border border-gray-300 rounded p-3">
+            </div>
+
+            <div>
+                <label for="pass" class="block mb-1">Contraseña</label>
+                <input type="password" id="pass" required
+                    class="w-full border border-gray-300 rounded p-3">
+            </div>
+
+            <button type="submit"
+                class="w-full bg-amber-700 text-white p-3 rounded hover:bg-amber-800">
+                Ingresar
+            </button>
+        </form>
+
+        <p id="mensaje" class="text-red-600 text-center mt-4"></p>
+
+    </main>
+    <script type="module" src="./index.controller.js"></script>
+
+</body>
+</html>

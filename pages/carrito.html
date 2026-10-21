@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-amber-50 min-h-screen">
+
+    <header class="bg-amber-700 text-white p-4">
+        <nav class="max-w-4xl mx-auto flex justify-between items-center gap-4">
+            <h1 class="text-xl font-bold">Tienda de panificados</h1>
+
+            <a href="./home.html"
+                class="bg-white text-amber-800 px-4 py-2 rounded">
+                Volver a productos
+            </a>
+        </nav>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-6">
+
+        <h2 class="text-2xl font-bold text-amber-900 mb-6">Mi carrito</h2>
+
+        <div class="bg-white rounded-xl shadow p-6">
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-amber-100">
+                        <tr>
+                            <th class="p-3">Producto</th>
+                            <th class="p-3">Precio</th>
+                            <th class="p-3">Acción</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="carrito"></tbody>
+                </table>
+            </div>
+
+            <div class="flex flex-wrap justify-between items-center gap-4 mt-6">
+                <p class="text-xl font-bold">
+                    Total: $<span id="total">0</span>
+                </p>
+
+                <button type="button" id="comprar"
+                    class="bg-amber-700 text-white px-6 py-3 rounded hover:bg-amber-800">
+                    Comprar
+                </button>
+            </div>
+
+            <p id="mensaje" class="text-red-600 mt-4"></p>
+
+        </div>
+
+    </main>
+
+    <script type="module" src="./carrito.controller.js"></script>
+
+</body>
+</html>
