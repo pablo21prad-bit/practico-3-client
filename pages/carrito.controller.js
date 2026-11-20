@@ -1,3 +1,4 @@
+
 import { comprar } from "../api/ventas.api.js";
 
 const tabla = document.getElementById("carrito");
@@ -15,6 +16,7 @@ const orden = {
     total: 0
 };
 
+/* mostrar los productos del carrito */
 const mostrarCarrito = () => {
     tabla.innerHTML = "";
     mensaje.textContent = "";
@@ -66,32 +68,37 @@ const mostrarCarrito = () => {
     }
 };
 
-
+/* realizar una compra */
 const botonComprar = document.getElementById("comprar");
 
 botonComprar.addEventListener("click", async () => {
+
     if (carrito.length === 0) {
         mensaje.textContent = "El carrito está vacío";
         return;
     }
 
-    const usuario = JSON.parse(sessionStorage.getItem("user"));
+    /* verificar que exista un token */
+    const token = sessionStorage.getItem("token");
 
-    if (usuario === null) {
-        window.location.href = "../index.html";
+    if (!token) {
+        mensaje.textContent = "Tenés que iniciar sesión para comprar";
         return;
     }
-
-    orden.id_usuario = usuario.id_usuario;
-    orden.fecha = new Date().toLocaleDateString("sv-SE");
 
     botonComprar.disabled = true;
 
     try {
-        const res = await comprar(orden);
+        /* enviar los productos al servidor */
+        const res = await comprar({
+            productos: orden.productos
+        });
+
         const respuesta = await res.json();
 
         if (res.status === 201) {
+
+            /* vaciar el carrito */
             carrito.splice(0, carrito.length);
 
             localStorage.setItem(
@@ -102,15 +109,21 @@ botonComprar.addEventListener("click", async () => {
             mostrarCarrito();
 
             alert("Orden creada. Número: " + respuesta.orden.id_venta);
+
+        } else if (res.status === 401 || res.status === 403) {
+            mensaje.textContent = "Sesión inválida o vencida. Iniciá sesión nuevamente";
+
         } else {
             mensaje.textContent = respuesta.message;
         }
+
     } catch (error) {
         console.log(error);
         mensaje.textContent = "No se pudo realizar la compra";
-    }
 
-    botonComprar.disabled = false;
+    } finally {
+        botonComprar.disabled = false;
+    }
 });
 
 mostrarCarrito();
